@@ -14,6 +14,9 @@ if [ ! "$DISABLE_COLLECTSTATIC" ] && [ -f "$MANAGE_FILE" ]; then
     # Check if collectstatic is configured properly.
     python $MANAGE_FILE collectstatic --dry-run --noinput && RUN_COLLECTSTATIC=true
 
+    # Make sure node is within PATH
+    export PATH=/app/vendor/node/bin:$PATH
+
     # Compile assets if collectstatic appears to be kosher.
     if [ "$RUN_COLLECTSTATIC" ]; then
 
